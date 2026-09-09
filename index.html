@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main>
+        <h1>Weather Dashboard</h1>
+
+        <div class="settings-wrap">
+            <button id="settings-toggle" class="settings-toggle" type="button" aria-label="Open settings">
+                ⚙️
+            </button>
+
+            <div id="settings-panel" class="settings-panel hidden" aria-live="polite">
+                <div class="settings-group">
+                    <span>Theme</span>
+                    <div class="settings-buttons">
+                        <button class="theme-btn active" data-theme="light" type="button">Light</button>
+                        <button class="theme-btn" data-theme="dark" type="button">Dark</button>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <span>Units</span>
+                    <div class="settings-buttons">
+                        <button class="unit-btn active" data-units="metric" type="button">Metric</button>
+                        <button class="unit-btn" data-units="imperial" type="button">Imperial</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form id="search-form">
+            <label for="location-input">Search for a city</label>
+            <div class="search-row">
+                <input
+                    id="location-input"
+                    type="text"
+                    placeholder="portland, Oregon"
+                    required
+                >
+                <button type="submit">search</button>
+            </div>
+        </form>
+
+        <p id="status-message"></p>
+
+
+        <div class="dashboard-grid">
+
+            <section class="weather-card">
+                <h2 class="location">Search for a city</h2>
+                <p class="date"></p>
+                <p class="temperature"></p>
+                <p class="condition"></p>
+                <div class="weather-icon"></div>
+            </section>
+
+            <section class="details-card">
+                <h2>Today's details</h2>
+
+                <div class="detail">
+                    <span>Humidity</span>
+                    <strong class="humidity"></strong>
+                </div>
+
+                <div class="detail">
+                    <span>Wind</span>
+                    <strong class="wind"></strong>
+                </div>
+
+                <div class="local-news">
+                    <div class="local-news-header">
+                        <h3>Local news</h3>
+                        <span>Latest headlines</span>
+                    </div>
+                    <div id="news-list" class="news-list">
+                        <p class="news-status">Search for a city to load local news.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="forecast-card">
+                <h2>7-Day Forecast</h2>
+                <div id="forecast-list"></div>
+            </section>
+
+
+            <section class="radar-card">
+                <div class="radar-header">
+                    <h2>Weather Radar</h2>
+                    <button id="radar-toggle" type="button">Open radar</button>
+                </div>
+
+                <div id="radar-panel" class="hidden">
+                    <iframe
+                        id="radar-frame"
+                        title="Weather radar"
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "weather-dashboard",
+  "version": "1.0.0",
+  "description": "A desktop weather dashboard",
+  "main": "main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^44.3.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.weather.dashboard",
+    "productName": "Weather Dashboard",
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
