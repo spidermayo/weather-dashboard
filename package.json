@@ -1,6 +1,6 @@
 {
   "name": "weather-dashboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A desktop weather dashboard",
   "main": "main.cjs",
   "scripts": {

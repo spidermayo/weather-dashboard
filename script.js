@@ -17,6 +17,8 @@ const themeButtons = document.querySelectorAll(".theme-btn");
 const unitButtons = document.querySelectorAll(".unit-btn");
 const radarToggle = document.querySelector("#radar-toggle");
 const radarPanel = document.querySelector("#radar-panel");
+const savedTheme = localStorage.getItem("weatherTheme");
+const savedUnits = localStorage.getItem("weatherUnits");
 
 // Show or hide the radar panel when radar button is clicked
 radarToggle.addEventListener("click", function () {
@@ -29,8 +31,8 @@ radarToggle.addEventListener("click", function () {
 });
 
 const appState = {
-    theme: "light",
-    units: "metric"
+    theme: savedTheme === "dark" ? "dark" : "light",
+    units: savedUnits === "imperial" ? "imperial" : "metric"
 };
 
 // Keep the latest search results so the display can be re-rendered when settings change
@@ -46,6 +48,7 @@ settingsToggle.addEventListener("click", function () {
 themeButtons.forEach(function (button) {
     button.addEventListener("click", function () {
         appState.theme = button.dataset.theme;
+        localStorage.setItem("weatherTheme", appState.theme);
         updateTheme();
     });
 });
@@ -54,6 +57,7 @@ themeButtons.forEach(function (button) {
 unitButtons.forEach(function (button) {
     button.addEventListener("click", function () {
         appState.units = button.dataset.units;
+        localStorage.setItem("weatherUnits", appState.units);
         updateUnits();
     });
 });
@@ -149,6 +153,7 @@ async function getWeather(city) {
 
         updateCurrentWeather(place, weatherData);
         updateForecast(weatherData);
+        localStorage.setItem("weatherLocation", city);
 
         statusMessage.textContent = "";
     } catch (error) {
@@ -347,4 +352,10 @@ function getWeatherIcon(code) {
 
 // Set the initial theme an load the default city
 updateTheme();
-getWeather("Portland, Oregon");
+updateUnits();
+
+const savedLocation =
+    localStorage.getItem("weatherLocation") || "portland, Oregon";
+
+locationInput.value = savedLocation;
+getWeather(savedLocation);
